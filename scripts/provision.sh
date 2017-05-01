@@ -14,3 +14,7 @@ echo 'server=puppetmaster.example.com' >> /etc/puppetlabs/puppet/puppet.conf
 
 echo "Installing goodies ..."
 yum install -y tree lsof  &> /dev/null
+
+echo "Setting puppetserver start on boot ..."
+systemctl enable puppetserver &> /dev/null
+systemctl start puppetserver &> /dev/null
