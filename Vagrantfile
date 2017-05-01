@@ -13,20 +13,7 @@ Vagrant.configure(2) do |config|
     master.vm.network :private_network, ip: "10.11.12.51"
     master.vm.network :private_network, ip: "192.168.12.51", virtualbox__intnet: true
     master.vm.box_check_update = false
-
-    # We need to decrease the puppetserver starting options
-    master.vm.provision "shell", inline: <<-SHELL
-      echo "Installing puppet..."
-      rpm -Uh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm &> /dev/null
-      yum install -y puppetserver &> /dev/null
-      ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
-      echo "Modifing puppetserver start params..."
-      sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
-      echo '[agent]' >> /etc/puppetlabs/puppet/puppet.conf
-      echo 'server=puppetmaster.example.com' >> /etc/puppetlabs/puppet/puppet.conf
-      echo "Installing goodies ..."
-      yum install -y tree lsof  &> /dev/null
-   SHELL
+    master.vm.provision :shell, path: "scripts/provision.sh"
   end
 
   config.vm.provider :virtualbox do |vb|
