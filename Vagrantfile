@@ -17,10 +17,12 @@ Vagrant.configure(2) do |config|
     # We need to decrease the puppetserver starting options
     master.vm.provision "shell", inline: <<-SHELL
       echo "Installing puppet..."
-      rpm -Uh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm > /dev/null
-      yum install -y puppetserver > /dev/null
+      rpm -Uh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm &> /dev/null
+      yum install -y puppetserver &> /dev/null
       echo "Modifing puppetserver start params..."
       sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
+      echo "Installing goodies ..."
+      yum install -y tree lsof  &> /dev/null
    SHELL
   end
 
