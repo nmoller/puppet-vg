@@ -15,9 +15,13 @@ that causes the delay when you do your
 $ vagrant up
 ```
 
+for the first time.
+
+We have added a slave (slave01) to connect to master. 
+
 
 ## Further dev
 
-Everything is ready to create a cluster setting the ips of each machine if you copy and edit the config block to add some hosts.
+Update the treatement of the keys....
 
 
