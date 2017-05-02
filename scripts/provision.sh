@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+#
+
+
+# Let's use names instead of IPs.  Add that info to /etc/hosts
+cp /etc/hosts{,.orig} 
+cat /vagrant/extras/hosts >> /etc/hosts
 
 echo "Installing puppet..."
 rpm -Uh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm &> /dev/null
@@ -9,8 +15,8 @@ ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
 
 echo "Modifing puppetserver start params..."
 sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
-echo '[agent]' >> /etc/puppetlabs/puppet/puppet.conf
-echo 'server=puppetmaster.example.com' >> /etc/puppetlabs/puppet/puppet.conf
+
+cat /vagrant/puppet/puppet.conf >> /etc/puppetlabs/puppet/puppet.conf
 
 echo "Installing goodies ..."
 yum install -y tree lsof  &> /dev/null

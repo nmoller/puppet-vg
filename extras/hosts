@@ -1,0 +1,5 @@
+
+
+# Public Addresses
+10.11.12.51 puppetmaster  puppetmaster.example.com
+10.11.12.52 slave01       slave01.example.com
