@@ -13,14 +13,18 @@ yum install -y puppetserver &> /dev/null
 # It is easier to have puppet in the path like that.
 ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
 
-echo "Modifing puppetserver start params..."
-sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
+#echo "Modifing puppetserver start params..."
+#sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
+puppet module install camptocamp-puppetserver --modulepath="/etc/puppetlabs/code/environments/temp/modules"
 
 cat /vagrant/puppet/puppet.conf >> /etc/puppetlabs/puppet/puppet.conf
 
 echo "Installing goodies ..."
 yum install -y tree lsof  &> /dev/null
 
-echo "Setting puppetserver start on boot ..."
-systemctl enable puppetserver &> /dev/null
-systemctl start puppetserver &> /dev/null
+#echo "Setting puppetserver start on boot ..."
+#systemctl enable puppetserver &> /dev/null
+#systemctl start puppetserver &> /dev/null
+#
+# This is not safe :) but its easier. Do not take the risk
+systemctl disable iptables
