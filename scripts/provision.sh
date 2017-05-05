@@ -15,9 +15,9 @@ ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
 
 #echo "Modifing puppetserver start params..."
 sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
-options='--modulepath="/etc/puppetlabs/code/environments/temp/modules"'
-puppet module install camptocamp-puppetserver ${options}
-puppet module install puppetlabs-puppetdb ${options}
+# options='--modulepath="/etc/puppetlabs/code/environments/temp/modules"'
+# puppet module install camptocamp-puppetserver ${options}
+# puppet module install puppetlabs-puppetdb ${options}
 
 cat /vagrant/puppet/puppet.conf >> /etc/puppetlabs/puppet/puppet.conf
 
