@@ -14,17 +14,19 @@ yum install -y puppetserver &> /dev/null
 ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
 
 #echo "Modifing puppetserver start params..."
-#sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
-puppet module install camptocamp-puppetserver --modulepath="/etc/puppetlabs/code/environments/temp/modules"
+sed -i -e "s%2g%512m%g" /etc/sysconfig/puppetserver
+options='--modulepath="/etc/puppetlabs/code/environments/temp/modules"'
+puppet module install camptocamp-puppetserver ${options}
+puppet module install puppetlabs-puppetdb ${options}
 
 cat /vagrant/puppet/puppet.conf >> /etc/puppetlabs/puppet/puppet.conf
 
 echo "Installing goodies ..."
 yum install -y tree lsof  &> /dev/null
 
-#echo "Setting puppetserver start on boot ..."
-#systemctl enable puppetserver &> /dev/null
-#systemctl start puppetserver &> /dev/null
+echo "Setting puppetserver start on boot ..."
+systemctl enable puppetserver &> /dev/null
+systemctl start puppetserver &> /dev/null
 #
 # This is not safe :) but its easier. Do not take the risk
 systemctl disable iptables

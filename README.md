@@ -19,6 +19,12 @@ for the first time.
 
 We have added a slave (slave01) to connect to master. 
 
+## Useful path
+
+```
+/etc/puppetlabs/puppet/puppetdb.conf
+```
+
 
 ## Further dev
 
