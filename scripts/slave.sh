@@ -18,6 +18,6 @@ cp /vagrant/puppet/keys/public_keys/${myname}.pem /etc/puppetlabs/puppet/ssl/pub
 cp /vagrant/puppet/keys/private_keys/${myname}.pem /etc/puppetlabs/puppet/ssl/private_keys/
 
 # It will generate the certificate in the master, ready to be signed
-puppet agent -t
+puppet agent -t  --environment=temp
 
 echo "${myname} is ready"

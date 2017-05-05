@@ -19,9 +19,9 @@ node 'puppetmaster.example.com' {
   # class { 'puppetdb::master::config': }
 
 
-  class {'uqam::iptables':
-  	httpd_ports => '8080, 8081'
-  }
+  # class {'uqam::iptables':
+  # 	httpd_ports => '8080, 8081'
+  # }
 
 /*
   service { 'iptables':
