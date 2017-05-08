@@ -10,6 +10,18 @@ node 'puppetmaster.example.com' {
 	    },
 	  },
 	}
+
+  firewall { '100 allow puppet access':
+    dport  => [8040],
+    proto  => 'tcp',
+    action => 'accept',
+  }
+
+  firewall { '101 allow http and https access':
+    dport  => [80, 443],
+    proto  => tcp,
+    action => accept,
+  }
   # Configure puppetdb and its underlying database
   # class { 'puppetdb': 
   #	listen_address => '10.11.12.51',
